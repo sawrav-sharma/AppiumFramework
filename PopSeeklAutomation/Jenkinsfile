@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    def mavenHome = tool name: 'Maven', type: 'Maven'
+                    def androidPlatform = 'Android'
+                    def iosPlatform = 'iOS'
+
+                    // Build and test for Android
+                    sh "${mavenHome}/bin/mvn clean test -Dplatform=${androidPlatform}"
+
+                    // Build and test for iOS
+                    sh "${mavenHome}/bin/mvn clean test -Dplatform=${iosPlatform}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/target/surefire-reports/*.xml', allowEmptyArchive: true
+            junit '**/target/surefire-reports/*.xml'
+        }
+    }
+}

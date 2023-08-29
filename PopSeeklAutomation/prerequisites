@@ -1,0 +1,22 @@
+Java
+Appium
+Android Sdk tools
+
+
+
+In your Android device, enable developer options
+Then,
+USB debugging - enable it
+Disable Permission Monitoring --> enable it.
+
+Connect your device .
+Open CMD, When you run the adb devices command in the Command Prompt (CMD),
+it will list the devices attached to your computer. If you see the output you provided:
+       List of devices attached
+       2f5f0d02        device
+
+It means that one device is connected to your computer, and its device ID is 2f5f0d02.
+The "device" status indicates that the device is connected and available for communication.
+The device ID is a unique identifier assigned to each connected device.
+
+2f5f0d02 - This is would be your devices udid number, that you need to add in the desired capabilities.
