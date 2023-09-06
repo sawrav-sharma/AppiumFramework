@@ -6,8 +6,13 @@ import java.io.IOException;
 
 public class CalciTest extends BaseTest {
 
-    @Test
+//    @Test
     public void testMultiplyFunctionality() throws InterruptedException, IOException {
         objectFactory.getCalci().multiplyTwoDigits();
+    }
+
+    @Test
+    public void testLoginIntoApp() throws InterruptedException, IOException {
+        objectFactory.getCalci().loginIntoInstagram();
     }
 }

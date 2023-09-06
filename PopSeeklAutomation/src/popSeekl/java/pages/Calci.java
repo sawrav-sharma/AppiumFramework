@@ -9,6 +9,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import reporter.ExtentLogger;
 import tests.BaseTest;
@@ -45,5 +47,42 @@ public class Calci extends BaseTest {
         String destinationPath = "target//Screenshots//screenshot.png";
         FileUtils.copyFile(screenshotFile, new File(destinationPath));
         ExtentLogger.info("Result - " + result);
+    }
+
+    /*
+    username -  accessibility id Username, email or mobile number
+            //android.view.View[@content-desc="Username, email or mobile number"]
+password - Password
+           //android.view.View[@content-desc="Password"]
+login - //android.widget.Button[@content-desc="Log in"]
+        //android.view.View[@content-desc="Log in"]
+    */
+
+    public void loginIntoInstagram() throws InterruptedException {
+            // Wait for a specific condition instead of using Thread.sleep
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+
+            // Find elements using more specific locators and reduce redundant code
+            WebElement enterUsername = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.instagram.android:id/login_username")));
+            enterUsername.sendKeys("test");
+
+            WebElement enterPassword = driver.findElement(By.id("com.instagram.android:id/password"));
+            enterPassword.sendKeys("123e33e");
+
+            WebElement clickLogin = driver.findElement(By.id("com.instagram.android:id/next_button"));
+            clickLogin.click();
+
+/*
+        Thread.sleep(10000);
+        WebElement enterUsername = driver.findElementByAccessibilityId("Username, email or mobile number");
+        enterUsername.click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//android.view.View[@content-desc='Username, email or mobile number']")).sendKeys("test");
+        WebElement enterPassword = driver.findElement(MobileBy.AccessibilityId("Password"));
+        enterPassword.click();
+        enterPassword.sendKeys("123e33e");
+        WebElement clickLogin = driver.findElement(By.xpath("//android.widget.Button[@content-desc='Log in']"));
+        clickLogin.click();
+*/
     }
 }

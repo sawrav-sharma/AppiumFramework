@@ -12,7 +12,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 
@@ -61,7 +60,6 @@ public final class ExtentReport {
             // Add error details to ExtentReport
             test.fail("Step description", MediaEntityBuilder.createScreenCaptureFromBase64String("base64string").build());
             // Handle exception
-
         }
     }
 }
